@@ -11,6 +11,7 @@ o = OAuth2Util.OAuth2Util(r)
 o.refresh(force=True)
 
 
+print('!! MMORPG Top Bot has started !!')
 # Get MMORPG sidebar info
 sidebar =  r.get_subreddit('mmorpg').description.split('\n')
 
@@ -30,10 +31,10 @@ for line in sidebar:
         break
 
 print('Creating output...');
-
 output = 'Greetings adventurers!\n\nI have compiled a list of all the top posts from last week for all of the popular MMO subreddits in the sidebar. It may be news or it may be fluff but its all here in one place!\n\n'
 output += 'Subreddit | Top Post Last Week | Points\n---|---|---\n'
-# Loop through subreddits and get top week
+
+# Loop through subreddits and get top from week
 for sub in subreddits:
     submissions = r.get_subreddit(sub).get_top_from_week(limit=1)
     for post in submissions:
