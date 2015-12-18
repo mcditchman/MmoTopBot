@@ -2,6 +2,14 @@
 import string
 import OAuth2Util
 
+'''
+MMoTopBot is a reddit bot that uses the PRAW reddit api.
+Its purpose is to aggregate through all the popular MMORPG games
+from the /r/MMORPG subreddit sidebar, and post as list of the top posts
+of the week from each listed subreddit.
+
+author: md74671
+'''
 subreddits = list()
 reddit = praw.Reddit('Top MMORPG post aggregator')
 
