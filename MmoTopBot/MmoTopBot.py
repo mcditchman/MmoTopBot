@@ -3,6 +3,7 @@ import string
 import OAuth2Util
 
 
+
 subreddits = list()
 r = praw.Reddit('Top MMORPG post aggregator by /u/SadDragon')
 
@@ -23,6 +24,7 @@ for line in sidebar:
         start = True
         continue
     if start and line != '':
+        print(str(line))
         loc = line.index('/r/') + 3
         subreddits.append(line[loc:-1])
         index += 1 
@@ -30,15 +32,16 @@ for line in sidebar:
         start = False
         break
 
+
 print('Creating output...');
 output = 'Greetings adventurers!\n\nI have compiled a list of all the top posts from last week for all of the popular MMO subreddits in the sidebar. It may be news or it may be fluff but its all here in one place!\n\n'
 output += 'Subreddit | Top Post Last Week | Points\n---|---|---\n'
 
 # Loop through subreddits and get top from week
 for sub in subreddits:
-    submissions = r.get_subreddit(sub).get_top_from_week(limit=1)
+    submissions = r.get_subreddit(sub.strip()).get_top_from_week(limit=1)
     for post in submissions:
-        output += '/r/{0} | [{1}]({2}) | {3}\n'.format(sub, post.title, post.url, post.score)
+        output += '/r/{0} | [{1}]({2}) | {3}\n'.format(sub, post.title, post.permalink, post.score)
     
 output += '\n\n---\n\n I am a bot and this is an automated post. Please direct any questions to the mods via modmail.\n\n*beep boop*'
 
