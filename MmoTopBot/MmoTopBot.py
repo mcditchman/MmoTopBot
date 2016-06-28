@@ -1,6 +1,7 @@
 ﻿import praw
 import string
 import OAuth2Util
+import re
 
 
 
@@ -42,7 +43,7 @@ for sub in subreddits:
     submissions = r.get_subreddit(sub.strip()).get_top_from_week(limit=1)
     for post in submissions:
         print('    Adding {0}...'.format(sub)) 
-        output += '/r/{0} | [{1}]({2}) | {3}\n'.format(sub, post.title, post.permalink, post.score)
+        output += '/r/{0} | [{1}]({2}) | {3}\n'.format(sub, re.sub('[|]','',post.title), post.permalink, post.score)
     
 output += '\n\n---\n\n I am a bot and this is an automated post. Please direct any questions to the mods via modmail.\n\n*beep boop*'
 
