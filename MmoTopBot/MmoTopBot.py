@@ -6,7 +6,7 @@ import re
 
 
 subreddits = list()
-r = praw.Reddit('Top MMORPG post aggregator by /u/SadDragon')
+r = praw.Reddit('Top MMORPG post aggregator')
 
 # Setup Authentication
 o = OAuth2Util.OAuth2Util(r)
